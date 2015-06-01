@@ -12,12 +12,24 @@ class Triangle
     side1 == side2 && side2 == side3
   end
 
+  def equilateral_msg
+    'This triangle is equilateral!'
+  end
+
   def isosceles?
     [side1, side2, side3].uniq.length == 2
   end
 
+  def isosceles_msg
+    'This triangle is isosceles! Also, that word is hard to type.'
+  end
+
   def scalene?
     !(equilateral? || scalene?)
+  end
+
+  def scalene_msg
+    'This triangle is scalene and mathematically boring.'
   end
 
   def recite_facts
@@ -26,20 +38,16 @@ class Triangle
   end
 
   def type_message
-    if equilateral?
-      'This triangle is equilateral!'
-    elsif isosceles?
-      'This triangle is isosceles! Also, that word is hard to type.'
-    else
-      'This triangle is scalene and mathematically boring.'
-    end
+    return equilateral_msg if equilateral?
+    return isosceles_msg if isosceles?
+    scalene_msg
   end
 
   def angle_message
     angles = calculate_angles(side1, side2, side3)
 
     msg = 'The angles of this triangle are ' + angles.join(',')
-    msg += "\nThis triangle is also a right triangle!" if angles.include? 90
+    msg += "\nThis triangle is also a right triangle!" if angles.include?(90)
     msg + "\n\n"
   end
 
