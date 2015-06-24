@@ -1,6 +1,6 @@
 class Dino
-  attr_accessor :name, :period, :continent
-  attr_accessor :diet, :weight, :locomotion, :info
+  attr_accessor :name, :period, :continent,
+                :diet, :weight, :locomotion, :info
 
   def size
     return '' unless @weight
