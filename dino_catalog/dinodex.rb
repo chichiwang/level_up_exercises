@@ -36,16 +36,16 @@ class Dinodex
   end
 
   def get_data(configs)
-    configs.inject([]) do |memo, config|
+    configs.map do |config|
       keys, rows = data_from_file(config)
-      format_data(keys, rows) + memo
-    end
+      format_data(keys, rows)
+    end.flatten
   end
 
   def help_msgs
     config = @fs.json_to_hash(CONFIG[:help])
-    config.inject({}) do |memo, (key, val)|
-      memo.merge(key => @fs.txt_to_string(val))
+    config.each_with_object({}) do |(key, val), memo|
+      memo[key] = @fs.txt_to_string(val)
     end
   end
 
