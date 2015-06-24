@@ -2,8 +2,6 @@ class Dino
   attr_accessor :name, :period, :continent
   attr_accessor :diet, :weight, :locomotion, :info
 
-  public
-
   def size
     return '' unless @weight
     return 'big' if @weight.to_i > 4000
