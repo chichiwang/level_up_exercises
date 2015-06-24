@@ -5,8 +5,6 @@ require_relative 'input_parser.rb'
 class ExportDinos
   FLAGS = %w(-n)
 
-  public
-
   def initialize(registry)
     @input = InputParser.new
     @fs = FileSystem.new
