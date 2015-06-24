@@ -2,8 +2,6 @@ require 'json'
 require 'csv'
 
 class FileSystem
-  public
-
   def json_to_hash(filepath)
     JSON.parse(File.read(absolute_path(filepath)))
   end
