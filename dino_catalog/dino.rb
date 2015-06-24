@@ -9,7 +9,7 @@ class Dino
   end
 
   def weight
-    separate_comma(@weight) + ' lbs' if @weight
+    pretty_integer(@weight) + ' lbs' if @weight
   end
 
   def details
@@ -30,7 +30,7 @@ class Dino
 
   private
 
-  def separate_comma(num_string)
+  def pretty_integer(num_string)
     num_string.chars.to_a.reverse.each_slice(3).map(&:join).join(",").reverse
   end
 end
