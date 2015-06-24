@@ -25,7 +25,7 @@ class FileSystem
     File.open(file, 'w') { |f| f.write(str) }
   end
 
-  def pwd
+  def current_dir
     File.expand_path(File.dirname(__FILE__))
   end
 

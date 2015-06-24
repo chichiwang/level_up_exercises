@@ -22,7 +22,7 @@ class ExportDinos
   private
 
   def export_registry(filename)
-    dir = @fs.pwd + '/exports'
+    dir = @fs.current_dir + '/exports'
     @fs.create_dir(dir)
     file = dir + "/#{filename}.json"
     @fs.write(@registry.json, file)
