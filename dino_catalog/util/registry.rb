@@ -3,8 +3,6 @@ require 'json'
 class Registry
   attr_reader :list
 
-  public
-
   def initialize(wrapperclass)
     @list = []
     @wrapperclass = wrapperclass
