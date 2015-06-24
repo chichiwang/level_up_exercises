@@ -1,8 +1,6 @@
 class DataTransformer
   attr_reader :keymap, :valuemap
 
-  public
-
   def initialize(map)
     @map = map
   end
