@@ -32,6 +32,6 @@ class FileSystem
   private
 
   def absolute_path(path)
-    File.expand_path(File.dirname(__FILE__)) + '/' + path
+    File.join(File.expand_path(File.dirname(__FILE__)), path)
   end
 end
