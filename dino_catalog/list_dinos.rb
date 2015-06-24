@@ -16,8 +16,6 @@ class ListDinos
 
   FLAGS = %w(-c -c? -d -f -i -l -n -p -s -w)
 
-  public
-
   def initialize(registry)
     @registry = registry
     @input = InputParser.new
