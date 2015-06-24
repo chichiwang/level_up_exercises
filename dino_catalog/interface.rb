@@ -9,8 +9,6 @@ require 'json'
 class Interface
   attr_reader :quit
 
-  public
-
   def initialize(registry, help_msgs, welcome_msg)
     @quit = false
     @help = Help.new(help_msgs)
