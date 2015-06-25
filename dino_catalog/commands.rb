@@ -7,15 +7,15 @@ module Commands
   }
 
   def self.err_cmd(cmd)
-    ERROR[:cmd] + "#{cmd}\n\n"
+    ERROR[:cmd] + "\n#{cmd}\n\n"
   end
 
   def self.err_flag(flag)
-    ERROR[:flag] + "#{flag}\n\n"
+    ERROR[:flag] + "\n#{flag}\n\n"
   end
 
   def self.err_params(params)
-    ERROR[:params] + "#{params}\n\n"
+    ERROR[:params] + "\n#{params}\n\n"
   end
 
   def self.valid_cmd?(cmd)

@@ -11,8 +11,8 @@ class DinoHelp
 
   def evaluate(params)
     params = 'manual' unless params.size > 0
-    return puts Commands.err_cmd(params) unless Commands.valid_cmd?(params)
-    puts @messages[params]
+    return Commands.err_cmd(params) unless Commands.valid_cmd?(params)
+    @messages[params]
   end
 
   private

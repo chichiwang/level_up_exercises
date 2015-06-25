@@ -43,7 +43,7 @@ class Dinodex
   end
 
   def help(params)
-    @help.evaluate(params)
+    puts @help.evaluate(params)
   end
 
   def list(params)
