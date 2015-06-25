@@ -34,7 +34,6 @@ class Dinodex
   end
 
   def export(params)
-    # puts "=> export " + params
     puts @exporter.export(params)
   end
 

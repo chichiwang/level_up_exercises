@@ -14,7 +14,7 @@ class DinoImporter
 
   def import(config = CONFIG)
     data = data_from_sources(data_sources(config))
-    @dinos.concat(data.sort_by { |dino| dino[:name] })
+    @dinos.concat(data).sort_by! { |dino| dino['name'] }
   end
 
   private
@@ -51,8 +51,8 @@ class DinoImporter
   end
 
   def row_to_hash(keys, row)
-    row.each.with_index.inject({}) do |hash, (val, idx)|
-      hash.merge(keys[idx] => val)
+    row.each_with_object({}).with_index do |(val, memo), idx|
+      memo[keys[idx]] = val if val
     end
   end
 
