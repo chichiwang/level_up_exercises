@@ -10,8 +10,8 @@ module Commands
     ERROR[:cmd] + "#{cmd}\n\n"
   end
 
-  def self.err_flag(param)
-    ERROR[:flag] + "#{param.first}\n\n"
+  def self.err_flag(flag)
+    ERROR[:flag] + "#{flag}\n\n"
   end
 
   def self.err_params(params)

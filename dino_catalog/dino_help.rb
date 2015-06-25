@@ -7,7 +7,6 @@ class DinoHelp
 
   def initialize(config = CONFIG)
     @messages = help_messages(data_sources(config))
-    p @messages
   end
 
   def evaluate(params)
