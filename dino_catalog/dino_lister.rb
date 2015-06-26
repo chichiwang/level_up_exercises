@@ -1,5 +1,5 @@
 require_relative 'dino'
-require_relative 'commands'
+require_relative 'util/commands'
 
 require 'optparse'
 
@@ -11,7 +11,7 @@ class DinoLister
   def evaluate(params)
     params = params.split(' ')
     options, full_flag = parse!(params)
-
+    p options
     return results(options, full_flag) if params.empty?
     Commands.err_params(params)
   rescue OptionParser::InvalidOption => e

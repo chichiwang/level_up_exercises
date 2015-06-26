@@ -1,8 +1,8 @@
 require_relative 'dino_importer'
-require_relative 'commands'
 require_relative 'dino_help'
 require_relative 'dino_exporter'
 require_relative 'dino_lister'
+require_relative 'util/commands'
 
 class Dinodex
   WELCOME_FILE = "views/welcome.txt"

@@ -1,4 +1,4 @@
-require_relative 'commands'
+require_relative 'util/commands'
 
 require 'optparse'
 require 'json'
