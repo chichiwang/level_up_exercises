@@ -2,6 +2,7 @@ require_relative 'dino_importer'
 require_relative 'commands'
 require_relative 'dino_help'
 require_relative 'dino_exporter'
+require_relative 'dino_lister'
 
 class Dinodex
   WELCOME_FILE = "views/welcome.txt"
@@ -10,6 +11,7 @@ class Dinodex
   def initialize
     @dino_data = DinoImporter.new.import
     @exporter = DinoExporter.new(@dino_data)
+    @lister = DinoLister.new(@dino_data)
     @help = DinoHelp.new
     start
   end
@@ -46,7 +48,7 @@ class Dinodex
   end
 
   def list(params)
-    puts "=> list " + params
+    puts @lister.evaluate(params)
   end
 
   def read(prompt)

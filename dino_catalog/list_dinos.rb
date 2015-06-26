@@ -32,7 +32,7 @@ class ListDinos
   private
 
   def display_results(flags, full)
-    method = full ? "details" : "name"
+    method = full ? "synopsis" : "name"
     list = filtered_list(flags)
     return puts "\n> No matches found!\n\n" if list.empty?
     puts results(list, method)

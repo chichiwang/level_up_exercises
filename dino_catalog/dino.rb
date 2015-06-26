@@ -2,9 +2,9 @@ class Dino
   attr_accessor :name, :period, :continent,
                 :diet, :weight, :locomotion, :info
 
-  def size
+  def size(threshhold = 4000)
     return '' unless @weight
-    return 'big' if @weight.to_i > 4000
+    return 'big' if @weight.to_i > threshhold
     'small'
   end
 
@@ -12,7 +12,7 @@ class Dino
     pretty_integer(@weight) + ' lbs' if @weight
   end
 
-  def details
+  def synopsis
     instance_variables.map do |prop|
       prop_name = prop.to_s.gsub(/^@/, '')
       val = send(prop_name)
@@ -20,12 +20,8 @@ class Dino
     end.join('')
   end
 
-  def carnivore?
-    (@diet.downcase != 'herbivore').to_s
-  end
-
-  def <=>(other)
-    name <=> other.name
+  def herbivore
+    @diet.downcase == 'herbivore'
   end
 
   private
