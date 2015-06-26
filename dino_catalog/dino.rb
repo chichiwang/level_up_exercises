@@ -8,16 +8,12 @@ class Dino
     'small'
   end
 
-  def weight
-    pretty_integer(@weight) + ' lbs' if @weight
-  end
-
   def synopsis
-    instance_variables.map do |prop|
-      prop_name = prop.to_s.gsub(/^@/, '')
-      val = send(prop_name)
-      val ? "#{prop_name.capitalize}: #{val}\n" : ""
+    full_string = properties.map do |prop|
+      val = send(prop)
+      val ? "#{prop.capitalize}: #{val}\n" : ""
     end.join('')
+    full_string.gsub(/\s(\d+)$/, " #{pretty_weight}")
   end
 
   def herbivore
@@ -26,7 +22,14 @@ class Dino
 
   private
 
-  def pretty_integer(num_string)
-    num_string.chars.to_a.reverse.each_slice(3).map(&:join).join(",").reverse
+  def pretty_weight
+    weight_str = @weight.to_s
+    weight_arr = weight_str.chars.to_a
+    pretty_num = weight_arr.reverse.each_slice(3).map(&:join).join(",").reverse
+    pretty_num + ' lbs'
+  end
+
+  def properties
+    instance_variables.map { |ivar| ivar.to_s.sub(/^@/, '') }
   end
 end
