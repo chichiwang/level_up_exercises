@@ -1,0 +1,3 @@
+[submodule "overlord/client"]
+	path = overlord/client
+	url = git@github.com:chichiwang/overlord-client.git
