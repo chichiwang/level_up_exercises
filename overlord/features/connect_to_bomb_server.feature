@@ -7,5 +7,6 @@ Feature: connect to bomb server
   Scenario:
     Given user is not at the site
     When user navigates to the site
-    Then site is connected to bomb server
-    And user interface is displayed
+    Then site connects to the bomb server
+    And connection status is "connected"
+    And menu is displayed
