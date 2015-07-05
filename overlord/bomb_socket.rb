@@ -1,12 +1,12 @@
 require 'securerandom'
 require 'json'
 
-# require_relative 'bomb'
+require_relative 'bomb'
 
 class BombSocket
   def initialize
     @clients = []
-    # @bomb = new_bomb
+    @bomb = new_bomb
   end
 
   def register_client(ws)
@@ -31,8 +31,7 @@ class BombSocket
   end
 
   def open(client)
-    dummydata = { state: 'boot' }
-    client[:socket].send(JSON.pretty_generate(dummydata))
+    client[:socket].send(JSON.pretty_generate(@bomb.properties))
     @clients << client
     puts "Socket opened: " + client[:id]
   end
