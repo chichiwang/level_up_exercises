@@ -6,7 +6,7 @@ require 'json'
 class BombSocket
   def initialize
     @clients = []
-    # @bomb = Bomb.new
+    # @bomb = new_bomb
   end
 
   def register_client(ws)
@@ -18,25 +18,29 @@ class BombSocket
 
   private
 
-  def random_id
-    time = Time.new
-    prefix = time.sec.to_s + time.min.to_s + time.hour.to_s
-    suffix = time.usec.to_s
-    prefix + SecureRandom.hex + suffix
-  end
-
-  def open(client)
-    dummydata = { state: 'unconfigured' }
-    client[:socket].send(JSON.pretty_generate(dummydata))
-    @clients << client
-    puts "Socket opened: " + client[:id]
+  def close(client)
+    warn('Socket closed: ' + client[:id])
+    @clients.delete_if { |entry| entry[:id] == client[:id] }
   end
 
   def message(client, message)
   end
 
-  def close(client)
-    warn('Socket closed: ' + client[:id])
-    @clients.delete_if { |entry| entry[:id] == client[:id] }
+  def new_bomb
+    Bomb.new
+  end
+
+  def open(client)
+    dummydata = { state: 'boot' }
+    client[:socket].send(JSON.pretty_generate(dummydata))
+    @clients << client
+    puts "Socket opened: " + client[:id]
+  end
+
+  def random_id
+    time = Time.new
+    prefix = time.sec.to_s + time.min.to_s + time.hour.to_s
+    suffix = time.usec.to_s
+    prefix + SecureRandom.hex + suffix
   end
 end
