@@ -1,0 +1,11 @@
+var ws_actions = require('util/websocket/actions');
+var ws_const = require('util/websocket/const');
+
+var ws_msg = { state: 'inactive' };
+
+ws_actions.call(ws_const.SET_MESSAGE, ws_msg);
+
+---
+
+var kps = require('util/keypress/store');
+handler = function(val) { console.log(val) };
