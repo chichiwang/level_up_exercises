@@ -23,8 +23,12 @@ class BombSocket
     @clients.delete_if { |entry| entry[:id] == client[:id] }
   end
 
-  def message(client, message)
-    puts JSON.parse(message)
+  def message(_client, message)
+    msg = JSON.parse(message)
+    command = msg["command"]
+    params = msg["params"]
+    @bomb.send(command, *params)
+    push_all_properties
   end
 
   def new_bomb
@@ -42,5 +46,12 @@ class BombSocket
     prefix = time.sec.to_s + time.min.to_s + time.hour.to_s
     suffix = time.usec.to_s
     prefix + SecureRandom.hex + suffix
+  end
+
+  def push_all_properties
+    props = JSON.pretty_generate(@bomb.properties)
+    @clients.each do |client|
+      client[:socket].send(props)
+    end
   end
 end
