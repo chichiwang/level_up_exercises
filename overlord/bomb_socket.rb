@@ -24,6 +24,7 @@ class BombSocket
   end
 
   def message(client, message)
+    puts JSON.parse(message)
   end
 
   def new_bomb
