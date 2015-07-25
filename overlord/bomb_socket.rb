@@ -6,6 +6,7 @@ require_relative 'bomb'
 class BombSocket
   def initialize
     @clients = []
+    @updated_by = nil
     @bomb = new_bomb
   end
 
@@ -23,11 +24,12 @@ class BombSocket
     @clients.delete_if { |entry| entry[:id] == client[:id] }
   end
 
-  def message(_client, message)
+  def message(client, message)
     msg = JSON.parse(message)
     command = msg["command"]
     params = msg["params"]
     @bomb.send(command, *params)
+    @updated_by = client if command == 'configure'
     push_all_properties
   end
 
@@ -49,9 +51,10 @@ class BombSocket
   end
 
   def push_all_properties
-    props = JSON.pretty_generate(@bomb.properties)
+    props = @bomb.properties
     @clients.each do |client|
-      client[:socket].send(props)
+      client_flag = { client_updated: @updated_by == client }
+      client[:socket].send(JSON.pretty_generate(client_flag.merge(props)))
     end
   end
 end
