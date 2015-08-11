@@ -56,5 +56,6 @@ class BombSocket
       client_flag = { client_updated: @updated_by == client }
       client[:socket].send(JSON.pretty_generate(client_flag.merge(props)))
     end
+    @updated_by = nil
   end
 end
